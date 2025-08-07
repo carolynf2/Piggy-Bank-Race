@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐷 The Piggy Bank Race</title>
+    <link rel="stylesheet" href="piggy_bank_race.css">
+</head>
+<body>
+    <!-- Goal Selection Screen -->
+    <div id="goal-selection-screen" class="screen active">
+        <div class="container">
+            <header class="game-title">
+                <h1>🐷 The Piggy Bank Race</h1>
+                <p class="subtitle">Choose your savings goal and start your journey!</p>
+            </header>
+            
+            <div class="goals-grid">
+                <div class="goal-card" data-goal="basketball">
+                    <div class="goal-icon">🏀</div>
+                    <h3>Basketball</h3>
+                    <div class="goal-price">$25</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+                
+                <div class="goal-card" data-goal="videogame">
+                    <div class="goal-icon">🎮</div>
+                    <h3>Video Game</h3>
+                    <div class="goal-price">$50</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+                
+                <div class="goal-card" data-goal="bike">
+                    <div class="goal-icon">🚲</div>
+                    <h3>Bike</h3>
+                    <div class="goal-price">$100</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+                
+                <div class="goal-card" data-goal="toy">
+                    <div class="goal-icon">🧸</div>
+                    <h3>Toy</h3>
+                    <div class="goal-price">$10</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+                
+                <div class="goal-card" data-goal="book">
+                    <div class="goal-icon">📚</div>
+                    <h3>Book</h3>
+                    <div class="goal-price">$15</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+                
+                <div class="goal-card" data-goal="headphones">
+                    <div class="goal-icon">🎧</div>
+                    <h3>Headphones</h3>
+                    <div class="goal-price">$75</div>
+                    <button class="select-goal-btn">Choose Goal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Screen -->
+    <div id="main-dashboard-screen" class="screen">
+        <div class="container">
+            <!-- Header with game info -->
+            <header class="dashboard-header">
+                <h1>🐷 The Piggy Bank Race</h1>
+                <div class="goal-info">
+                    <span class="goal-display">
+                        <span id="current-goal-icon">🏀</span>
+                        <span id="current-goal-name">Basketball</span>
+                    </span>
+                    <span class="target-amount">Target: $<span id="target-amount">25</span></span>
+                    <span class="saved-amount">Saved: $<span id="current-savings">0</span></span>
+                </div>
+            </header>
+
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="progress-percentage">0%</span>
+                    <span class="estimated-completion">📅 <span id="completion-date">Aug 20</span></span>
+                </div>
+            </div>
+
+            <!-- Piggy Bank Animation -->
+            <div class="piggy-bank-section">
+                <div id="piggy-bank-animation" class="piggy-bank">🐷💰</div>
+                <div class="savings-display">$<span id="display-savings">0</span></div>
+            </div>
+
+            <!-- AI Racers -->
+            <div class="ai-racers-section">
+                <h3>AI Racers</h3>
+                <div class="racers-container">
+                    <div class="racer" id="racer-mia">
+                        <div class="racer-emoji">🐭</div>
+                        <div class="racer-info">
+                            <div class="racer-name">Mia</div>
+                            <div class="racer-progress">$<span id="mia-savings">8</span>/$<span id="mia-target">25</span></div>
+                        </div>
+                        <div class="racer-bar">
+                            <div id="mia-progress-fill" class="racer-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="racer" id="racer-max">
+                        <div class="racer-emoji">🐶</div>
+                        <div class="racer-info">
+                            <div class="racer-name">Max</div>
+                            <div class="racer-progress">$<span id="max-savings">15</span>/$<span id="max-target">50</span></div>
+                        </div>
+                        <div class="racer-bar">
+                            <div id="max-progress-fill" class="racer-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="racer" id="racer-ruby">
+                        <div class="racer-emoji">🐰</div>
+                        <div class="racer-info">
+                            <div class="racer-name">Ruby</div>
+                            <div class="racer-progress">$<span id="ruby-savings">5</span>/$<span id="ruby-target">10</span></div>
+                        </div>
+                        <div class="racer-bar">
+                            <div id="ruby-progress-fill" class="racer-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Activities -->
+            <div class="activities-section">
+                <div class="activity-item">
+                    <div class="activity-icon">💵</div>
+                    <div class="activity-text">Daily Allowance</div>
+                    <button id="collect-allowance-btn" class="activity-btn">+$1</button>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon">🧹</div>
+                    <div class="activity-text">Complete Chores</div>
+                    <button id="complete-chore-btn" class="activity-btn">+$2</button>
+                </div>
+            </div>
+
+            <!-- Smart Choice Section -->
+            <div id="smart-choice-section" class="smart-choice-section hidden">
+                <div class="choice-prompt">
+                    <div class="choice-icon">💡</div>
+                    <div class="choice-text">
+                        <span id="choice-question">Spend $2 on candy?</span>
+                    </div>
+                    <div class="choice-buttons">
+                        <button id="choice-save-btn" class="choice-btn save-btn">Save</button>
+                        <button id="choice-spend-btn" class="choice-btn spend-btn">Spend</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Games -->
+            <div class="mini-games-section">
+                <h3>🎮 Mini-Games</h3>
+                <div class="games-container">
+                    <button id="coin-counting-btn" class="game-btn">
+                        <span class="game-icon">🪙</span>
+                        <span class="game-name">Coin Counting</span>
+                    </button>
+                    <button id="price-comparison-btn" class="game-btn">
+                        <span class="game-icon">💰</span>
+                        <span class="game-name">Price Comparison</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="new-goal-btn" class="action-btn secondary">New Goal</button>
+                <button id="view-gallery-btn" class="action-btn secondary">Gallery</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mini Game Modal -->
+    <div id="mini-game-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="game-modal-title">🪙 Coin Counting</h3>
+                <button id="close-game-modal" class="close-btn">&times;</button>
+            </div>
+            <div id="game-modal-body" class="modal-body">
+                <!-- Game content will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button id="submit-game-answer" class="submit-btn">Submit Answer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Milestone Modal -->
+    <div id="milestone-modal" class="modal milestone-modal hidden">
+        <div class="modal-content">
+            <div class="celebration-header">
+                <div class="confetti">🎉✨🎊✨🎉</div>
+                <h2 id="milestone-title">Milestone Reached!</h2>
+                <div class="milestone-percentage">50%</div>
+            </div>
+            <div class="modal-body">
+                <p id="milestone-message">Halfway there! You're doing amazing!</p>
+            </div>
+            <div class="modal-footer">
+                <button id="close-milestone-modal" class="celebrate-btn">Keep Going!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goal Completion Modal -->
+    <div id="completion-modal" class="modal completion-modal hidden">
+        <div class="modal-content">
+            <div class="celebration-header">
+                <div class="confetti">🎊🎉✨🎊🎉</div>
+                <h2>🏆 GOAL COMPLETED! 🏆</h2>
+            </div>
+            <div class="modal-body">
+                <div class="completion-ceremony">
+                    <div id="purchased-item" class="purchased-item">🏀</div>
+                    <p>Congratulations! You can now buy your <span id="completed-goal-name">Basketball</span>!</p>
+                </div>
+                <div class="certificate">
+                    <div class="certificate-header">📜 CERTIFICATE OF ACHIEVEMENT 📜</div>
+                    <div class="certificate-body">
+                        <div class="certificate-title">🏆 SAVINGS CHAMPION 🏆</div>
+                        <div class="certificate-details">
+                            <p>Successfully saved $<span id="certificate-amount">25</span></p>
+                            <p>for <span id="certificate-goal">Basketball</span></p>
+                            <p class="certificate-date">Completed: <span id="certificate-date">Aug 7, 2025</span></p>
+                        </div>
+                        <div class="certificate-footer">🌟 WELL DONE! 🌟</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="new-goal-from-completion" class="action-btn">Set New Goal</button>
+                <button id="close-completion-modal" class="action-btn secondary">Finish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="modal gallery-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📸 Achievement Gallery</h3>
+                <button id="close-gallery-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="gallery-items" class="gallery-grid">
+                    <!-- Gallery items will be inserted here -->
+                </div>
+                <div id="empty-gallery" class="empty-gallery">
+                    <p>🎯 Complete your first goal to start your gallery!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Toast -->
+    <div id="message-toast" class="message-toast hidden">
+        <div id="toast-content" class="toast-content"></div>
+    </div>
+
+    <script src="piggy_bank_race.js"></script>
+    <script src="piggy_bank_race_ui.js"></script>
+</body>
+</html>
