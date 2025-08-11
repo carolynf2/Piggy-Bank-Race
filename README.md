@@ -4,8 +4,6 @@
 
 Kids choose a savings goal (like a toy, game, or special outing) and race to fill their virtual piggy bank by making smart financial choices and completing activities.
 
-B
-
 **Goal Selection:**
 
 Choose from preset goals with different price points ($10 toy, $25 video game, $50 bike, $100 tablet)
